@@ -69,11 +69,11 @@ public class MenuState extends States implements InputProcessor{
 		infoBtnBounds = new Rectangle(infoBtnX, infoBtnY, playBtn.getWidth(), playBtn.getHeight());
 		controlsBtnBounds = new Rectangle(controlsBtnX, controlsBtnY, controlsBtn.getWidth(), controlsBtn.getHeight());
 		exitBtnBounds = new Rectangle(exitBtnX, exitBtnY, exitBtn.getWidth(), exitBtn.getHeight());
-		bacteria = new Texture("Bacterias/bacteria.png");
+		bacteria = OriginalBacteria.IMG;
 
 		bacterias = new OriginalBacteria[12];
 		for(int i = 0; i < 12; i++){
-			bacterias[i] = new OriginalBacteria(rand.nextInt(TheGenesis.WIDTH), rand.nextInt(TheGenesis.HEIGHT), 5, "Bacterias/bacteria.png");
+			bacterias[i] = new OriginalBacteria(rand.nextInt(TheGenesis.WIDTH), rand.nextInt(TheGenesis.HEIGHT), 0);
 		}
 
 		clicked = false;

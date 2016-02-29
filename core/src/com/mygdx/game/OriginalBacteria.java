@@ -3,14 +3,17 @@ package com.mygdx.game;
 import com.badlogic.gdx.graphics.Texture;
 
 public class OriginalBacteria extends Bacteria {
-
-    public OriginalBacteria(int posX, int posY, int damage, String img) {
-        super(posX, posY, damage, img);
+	
+	public final static int DAMAGE = 5;
+	public final static Texture IMG = new Texture("Bacterias/bacteria.png");
+	
+    public OriginalBacteria(int posX, int posY, float spawnRate) {
+    	
+        super(posX, posY, spawnRate);
 
     }
 
-
-
+   
     
 
 
