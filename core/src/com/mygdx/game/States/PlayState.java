@@ -56,7 +56,7 @@ public class PlayState extends States implements InputProcessor{
         health.checkHealth();
         Score.updateScore();
         Timer.checkCurrentTime();
-        Timer.updateTime();
+        
 
 
 

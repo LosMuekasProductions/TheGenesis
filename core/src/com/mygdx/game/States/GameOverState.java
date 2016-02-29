@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Score;
+import com.mygdx.game.Timer;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 /**
@@ -93,6 +94,7 @@ public class GameOverState extends States implements InputProcessor{
     protected void update(float dt) {
         handleInput();
         Score.updateScore();
+
     }
 
     @Override
@@ -103,7 +105,7 @@ public class GameOverState extends States implements InputProcessor{
         sb.draw(menuBtn, menuBtnX, menuBtnY);
         sb.draw(playAgnBtn, playAgnBtnX, playAgnBtnY);
         Score.font.draw(sb, Score.layout,TheGenesis.WIDTH/2 - Score.width/2 , (7*TheGenesis.HEIGHT)/8 -Score.height/2);
-        sb.draw(timeText, timeTextX, timeTextY);
+        Timer.font.draw(sb, "Time: " + Timer.layout, TheGenesis.WIDTH/2 - Timer.width/2 , (5*TheGenesis.HEIGHT)/8 -Timer.height/2);
         sb.end();
 
     }

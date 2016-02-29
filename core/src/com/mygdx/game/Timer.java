@@ -9,6 +9,9 @@ public class Timer {
 	
 	public static long startTime;
 	public static long currentTime;
+	public static long minutes;
+	public static long seconds;
+	public static String stringTime;
 	public static BitmapFont font = new BitmapFont(Gdx.files.internal("Fonts/Font.fnt"), false);;
     public static String scoreString = "0";
     public static GlyphLayout layout = new GlyphLayout();
@@ -21,14 +24,21 @@ public class Timer {
 	
 	public static void resetTimer(){
 		startTime = System.currentTimeMillis();
+		minutes = 0;
+		seconds = 0;
+		
 	}
 	
 	public static void checkCurrentTime(){
 		currentTime = (System.currentTimeMillis() - startTime)/1000;
+		updateTime();
 	}
 	
 	public static void updateTime(){
-        layout.setText(Timer.font, "Time: " + Timer.currentTime );
+		minutes = currentTime/60;
+		seconds = currentTime - (minutes*60);
+		stringTime = String.format("%02d:%02d", minutes, seconds);
+        layout.setText(Timer.font, stringTime );
         width = layout.width;
         height = layout.height;
     }
