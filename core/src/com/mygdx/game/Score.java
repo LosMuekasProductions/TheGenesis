@@ -14,19 +14,13 @@ public class Score {
     public static float height = layout.height;
 
     public Score(){
-
+    
     }
 
-    public static int getScore() {
-        return score;
-    }
-
-    public static void setScore(int score) {
-        Score.score = score;
-    }
+    
 
     public static void updateScore(){
-        Score.layout.setText(Score.font, "Score: " + Score.score );
+        layout.setText(Score.font, "Score: " + Score.score );
         width = layout.width;
         height = layout.height;
     }

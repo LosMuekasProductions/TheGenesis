@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.mygdx.game.Score;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 /**
@@ -23,15 +24,14 @@ public class GameOverState extends States implements InputProcessor{
 
     private Texture background;
     private Texture menuBtn;
-    private Texture scoreText;
+
     private Texture timeText;
     private Texture playAgnBtn;
 
     private Vector2 click;
     private int backgroundX;
     private int backgroundY;
-    private int scoreTextX;
-    private int scoreTextY;
+
     private int timeTextX;
     private int timeTextY;
     private int menuBtnX;
@@ -49,13 +49,11 @@ public class GameOverState extends States implements InputProcessor{
         background = new Texture("over/background.png");
         menuBtn = new Texture("over/button1.png");
         playAgnBtn = new Texture("over/button2.png");
-        scoreText = new Texture("over/ScoreText.png");
+
         timeText = new Texture("over/TimeText.png");
 
         backgroundX = 0;
         backgroundY = 0;
-        scoreTextX = TheGenesis.WIDTH / 2 - scoreText.getWidth() - 10;
-        scoreTextY= (TheGenesis.HEIGHT / 2) + scoreText.getHeight() + 20;
         timeTextX = TheGenesis.WIDTH / 2 - timeText.getWidth() - 10 ;
         timeTextY = (TheGenesis.HEIGHT / 2) + timeText.getHeight() - 80 ;
         menuBtnX = (TheGenesis.WIDTH - (menuBtn.getWidth() + playAgnBtn.getWidth()))/3;
@@ -94,6 +92,7 @@ public class GameOverState extends States implements InputProcessor{
     @Override
     protected void update(float dt) {
         handleInput();
+        Score.updateScore();
     }
 
     @Override
@@ -103,7 +102,7 @@ public class GameOverState extends States implements InputProcessor{
         sb.draw(background, backgroundX, backgroundY, TheGenesis.WIDTH, TheGenesis.HEIGHT);
         sb.draw(menuBtn, menuBtnX, menuBtnY);
         sb.draw(playAgnBtn, playAgnBtnX, playAgnBtnY);
-        sb.draw(scoreText, scoreTextX,scoreTextY);
+        Score.font.draw(sb, Score.layout,TheGenesis.WIDTH/2 - Score.width/2 , (7*TheGenesis.HEIGHT)/8 -Score.height/2);
         sb.draw(timeText, timeTextX, timeTextY);
         sb.end();
 
@@ -113,6 +112,8 @@ public class GameOverState extends States implements InputProcessor{
         background.dispose();
         menuBtn.dispose();
         playAgnBtn.dispose();
+        timeText.dispose();
+
 
     }
     @Override

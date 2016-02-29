@@ -30,6 +30,7 @@ public class PlayState extends States implements InputProcessor{
         super(gsm);
         health = new PlayerHealth();
         playStateBackground = new Texture("PlayState/playstatebackground.png");
+        Score.score = 0;
         Gdx.input.setInputProcessor(this);
 
     }
@@ -37,7 +38,7 @@ public class PlayState extends States implements InputProcessor{
     @Override
     protected void handleInput() {
 
-            health.takeDamage(5);
+            Score.score += 5;
 
 
     }
