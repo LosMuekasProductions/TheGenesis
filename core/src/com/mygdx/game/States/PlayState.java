@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.PlayerHealth;
 import com.mygdx.game.Score;
+import com.mygdx.game.Timer;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import java.awt.event.KeyListener;
@@ -31,7 +32,9 @@ public class PlayState extends States implements InputProcessor{
         health = new PlayerHealth();
         playStateBackground = new Texture("PlayState/playstatebackground.png");
         Score.score = 0;
+        Timer.resetTimer();
         Gdx.input.setInputProcessor(this);
+        
 
     }
 
@@ -52,6 +55,8 @@ public class PlayState extends States implements InputProcessor{
 
         health.checkHealth();
         Score.updateScore();
+        Timer.checkCurrentTime();
+        Timer.updateTime();
 
 
 
@@ -68,6 +73,7 @@ public class PlayState extends States implements InputProcessor{
         sb.draw(playStateBackground,0,0);
         sb.draw(health.getHealthPic(), 10, TheGenesis.HEIGHT - health.getHealthPic().getHeight()-5);
         Score.font.draw(sb, Score.layout, TheGenesis.WIDTH - 10 - Score.width , TheGenesis.HEIGHT - 10- Score.height);
+        Timer.font.draw(sb, Timer.layout, TheGenesis.WIDTH/2 - Timer.width/2 , TheGenesis.HEIGHT - 10 - Timer.height);
         sb.end();
     }
 
