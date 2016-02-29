@@ -12,6 +12,7 @@ public class DesktopLauncher {
 		config.width = TheGenesis.WIDTH;
 		config.height = TheGenesis.HEIGHT;
 		config.title = TheGenesis.TITLE;
+		config.resizable = false;
 		new LwjglApplication(new TheGenesis(), config);
 	}
 }
