@@ -41,8 +41,7 @@ public class PlayState extends States implements InputProcessor{
     @Override
     protected void handleInput() {
 
-            Score.score += 5;
-
+    	health.takeDamage(5);
 
     }
 
@@ -64,7 +63,7 @@ public class PlayState extends States implements InputProcessor{
 
     @Override
     public void dispose() {
-
+    	playStateBackground.dispose();
     }
 
     @Override
