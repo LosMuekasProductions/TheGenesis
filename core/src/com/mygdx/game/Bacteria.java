@@ -6,18 +6,17 @@ import java.util.Random;
 
 public abstract class Bacteria {
 
-    private int posX;
-    private int posY;
-    private float spawnRate;
+    protected int posX;
+    protected int posY;
+    protected final int  HEALTHPICHEIGHT = 86;
+    protected Random rand = new Random();
+  
 
-    Random rand = new Random();
 
-
-    public Bacteria(int posX, int posY, float spawnRate){
+    public Bacteria(){
 
     	this.posX = posX;
     	this.posY = posY;
-    	this.spawnRate = spawnRate;
 
     }
 
@@ -29,9 +28,6 @@ public abstract class Bacteria {
     	this.posY = posY;
     }
     
-    public void setSpawnRate(float spawnRate){
-    	this.spawnRate = spawnRate;
-    }
 
     public int getX(){
     	return posX;
@@ -41,8 +37,6 @@ public abstract class Bacteria {
     	return posY;
     }
     
-    public float getSpawnRate(){
-    	return spawnRate;
-    }
+    
 
 }

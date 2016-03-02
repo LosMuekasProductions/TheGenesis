@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class MenuState extends States implements InputProcessor{
 
-	private OriginalBacteria bacteria;
+
 
 	private Texture background;
 	private Texture playBtn;
@@ -34,7 +34,7 @@ public class MenuState extends States implements InputProcessor{
 	private int	exitBtnX;
 	private int	exitBtnY;
 
-	private Bacteria[] bacterias;
+	private OriginalBacteria[] bacterias;
 
 	private Rectangle playBtnBounds;
 	private Rectangle infoBtnBounds;
@@ -69,11 +69,11 @@ public class MenuState extends States implements InputProcessor{
 		infoBtnBounds = new Rectangle(infoBtnX, infoBtnY, playBtn.getWidth(), playBtn.getHeight());
 		controlsBtnBounds = new Rectangle(controlsBtnX, controlsBtnY, controlsBtn.getWidth(), controlsBtn.getHeight());
 		exitBtnBounds = new Rectangle(exitBtnX, exitBtnY, exitBtn.getWidth(), exitBtn.getHeight());
-		bacteria = new OriginalBacteria(0, 0, 0);
+
 
 		bacterias = new OriginalBacteria[12];
 		for(int i = 0; i < 12; i++){
-			bacterias[i] = new OriginalBacteria(rand.nextInt(TheGenesis.WIDTH), rand.nextInt(TheGenesis.HEIGHT), 0);
+			bacterias[i] = new OriginalBacteria();
 		}
 
 		clicked = false;
@@ -120,7 +120,9 @@ public class MenuState extends States implements InputProcessor{
     	controlsBtn.dispose();
     	exitBtn.dispose();
 		title.dispose();
-		bacteria.getImg().dispose();
+		for(int i = 0; i < 12; i++){
+			bacterias[i].getImg().dispose();
+		}
 
     }
 
@@ -143,7 +145,7 @@ public class MenuState extends States implements InputProcessor{
 		sb.draw(title, titleX, titleY);
 
 		for(int i = 0; i < 12; i++){
-			sb.draw(bacteria.getImg(), bacterias[i].getX(), bacterias[i].getY());
+			sb.draw(bacterias[i].getImg(), bacterias[i].getX(), bacterias[i].getY());
 		}
 
 

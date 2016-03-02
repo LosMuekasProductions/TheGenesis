@@ -8,8 +8,10 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.GameOverFont;
 import com.mygdx.game.PlayerHealth;
 import com.mygdx.game.Score;
+import com.mygdx.game.SpawnSystem;
 import com.mygdx.game.Timer;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
@@ -19,10 +21,11 @@ public class PlayState extends States implements InputProcessor{
 
 
 
-    private PlayerHealth health;
+    public static PlayerHealth health;
     private Texture playStateBackground;
     private boolean clicked;
-
+	private boolean clicked2;
+	private SpawnSystem spawnSystem;
 
 
 
@@ -34,14 +37,19 @@ public class PlayState extends States implements InputProcessor{
         Score.score = 0;
         Timer.resetTimer();
         Gdx.input.setInputProcessor(this);
-        
+        spawnSystem = new SpawnSystem();
+
 
     }
 
     @Override
     protected void handleInput() {
 
-    	health.takeDamage(5);
+
+           gsm.set(new GameOverState(gsm));
+           dispose();
+
+
 
     }
 
@@ -51,19 +59,34 @@ public class PlayState extends States implements InputProcessor{
             handleInput();
             clicked = false;
         }
+        if(clicked2) {
+            scoreUp();
+            clicked2 = false;
+        }
 
         health.checkHealth();
         Score.updateScore();
         Timer.checkCurrentTime();
-        
+        GameOverFont.updateOverTimeAndScore();
+        spawnSystem.updateSpawners();
+
 
 
 
     }
 
-    @Override
+    private void scoreUp() {
+    	Score.score += 5;
+	}
+
+	@Override
     public void dispose() {
-    	playStateBackground.dispose();
+
+		health.getHealthPic().dispose();
+		playStateBackground.dispose();
+
+
+
     }
 
     @Override
@@ -73,6 +96,7 @@ public class PlayState extends States implements InputProcessor{
         sb.draw(health.getHealthPic(), 10, TheGenesis.HEIGHT - health.getHealthPic().getHeight()-5);
         Score.font.draw(sb, Score.layout, TheGenesis.WIDTH - 10 - Score.width , TheGenesis.HEIGHT - 10- Score.height);
         Timer.font.draw(sb, Timer.layout, TheGenesis.WIDTH/2 - Timer.width/2 , TheGenesis.HEIGHT - 10 - Timer.height);
+        spawnSystem.render(sb);
         sb.end();
     }
 
@@ -97,6 +121,10 @@ public class PlayState extends States implements InputProcessor{
         if(button == Input.Buttons.LEFT) {
 
             clicked = true;
+        }
+        if(button == Input.Buttons.RIGHT) {
+
+            clicked2 = true;
         }
         return false;
     }

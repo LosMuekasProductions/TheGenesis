@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.mygdx.game.GameOverFont;
 import com.mygdx.game.Score;
 import com.mygdx.game.Timer;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
@@ -51,12 +52,9 @@ public class GameOverState extends States implements InputProcessor{
         menuBtn = new Texture("over/button1.png");
         playAgnBtn = new Texture("over/button2.png");
 
-        timeText = new Texture("over/TimeText.png");
 
         backgroundX = 0;
         backgroundY = 0;
-        timeTextX = TheGenesis.WIDTH / 2 - timeText.getWidth() - 10 ;
-        timeTextY = (TheGenesis.HEIGHT / 2) + timeText.getHeight() - 80 ;
         menuBtnX = (TheGenesis.WIDTH - (menuBtn.getWidth() + playAgnBtn.getWidth()))/3;
         menuBtnY = TheGenesis.HEIGHT/4 - menuBtn.getHeight()/2;
         playAgnBtnX = ((TheGenesis.WIDTH - (menuBtn.getWidth() + playAgnBtn.getWidth()))/3)*3;
@@ -104,8 +102,8 @@ public class GameOverState extends States implements InputProcessor{
         sb.draw(background, backgroundX, backgroundY, TheGenesis.WIDTH, TheGenesis.HEIGHT);
         sb.draw(menuBtn, menuBtnX, menuBtnY);
         sb.draw(playAgnBtn, playAgnBtnX, playAgnBtnY);
-        Score.font.draw(sb, Score.layout,TheGenesis.WIDTH/2 - Score.width/2 , (7*TheGenesis.HEIGHT)/8 -Score.height/2);
-        Timer.font.draw(sb, "Time: " + Timer.layout, TheGenesis.WIDTH/2 - Timer.width/2 , (5*TheGenesis.HEIGHT)/8 -Timer.height/2);
+        Score.font.draw(sb, Score.layout, TheGenesis.WIDTH/2 - Score.width /2 , (7*TheGenesis.HEIGHT)/8 -Score.height/2);
+        Timer.font.draw(sb, Timer.layout2, TheGenesis.WIDTH/2 - Timer.width2/2 , (5*TheGenesis.HEIGHT)/8 -Timer.height/2);
         sb.end();
 
     }
@@ -114,7 +112,7 @@ public class GameOverState extends States implements InputProcessor{
         background.dispose();
         menuBtn.dispose();
         playAgnBtn.dispose();
-        timeText.dispose();
+
 
 
     }
