@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.GameOverFont;
 import com.mygdx.game.PlayerHealth;
 import com.mygdx.game.Score;
+import com.mygdx.game.SpawnSystem;
 import com.mygdx.game.Timer;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
@@ -20,11 +21,11 @@ public class PlayState extends States implements InputProcessor{
 
 
 
-    private PlayerHealth health;
+    public static PlayerHealth health;
     private Texture playStateBackground;
     private boolean clicked;
 	private boolean clicked2;
-
+	private SpawnSystem spawnSystem;
 
 
 
@@ -36,7 +37,8 @@ public class PlayState extends States implements InputProcessor{
         Score.score = 0;
         Timer.resetTimer();
         Gdx.input.setInputProcessor(this);
-        
+        spawnSystem = new SpawnSystem();
+
 
     }
 
@@ -63,7 +65,9 @@ public class PlayState extends States implements InputProcessor{
         health.checkHealth();
         Score.updateScore();
         Timer.checkCurrentTime();
-        GameOverFont.updateOverTimeAndScore();        
+        GameOverFont.updateOverTimeAndScore();
+        spawnSystem.updateSpawners();
+
 
 
 
@@ -77,7 +81,7 @@ public class PlayState extends States implements InputProcessor{
     public void dispose() {
 		health.getHealthPic().dispose();
 		playStateBackground.dispose();
-		
+
 
     }
 
@@ -88,6 +92,7 @@ public class PlayState extends States implements InputProcessor{
         sb.draw(health.getHealthPic(), 10, TheGenesis.HEIGHT - health.getHealthPic().getHeight()-5);
         Score.font.draw(sb, Score.layout, TheGenesis.WIDTH - 10 - Score.width , TheGenesis.HEIGHT - 10- Score.height);
         Timer.font.draw(sb, Timer.layout, TheGenesis.WIDTH/2 - Timer.width/2 , TheGenesis.HEIGHT - 10 - Timer.height);
+        spawnSystem.render(sb);
         sb.end();
     }
 

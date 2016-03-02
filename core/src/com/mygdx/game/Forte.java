@@ -7,9 +7,9 @@ public class Forte extends Bacteria {
 	public final static int DAMAGE = 10;
 	private final Texture IMG = new Texture("Bacterias/bacteria.png");
 
-    public Forte(int posX, int posY) {
+    public Forte() {
 
-        super(posX, posY);
+        super();
 
     }
 

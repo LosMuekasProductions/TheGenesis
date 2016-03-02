@@ -73,7 +73,7 @@ public class MenuState extends States implements InputProcessor{
 
 		bacterias = new OriginalBacteria[12];
 		for(int i = 0; i < 12; i++){
-			bacterias[i] = new OriginalBacteria(rand.nextInt(TheGenesis.WIDTH), rand.nextInt(TheGenesis.HEIGHT));
+			bacterias[i] = new OriginalBacteria();
 		}
 
 		clicked = false;
