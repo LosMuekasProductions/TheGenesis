@@ -8,7 +8,7 @@ public class Timer {
 
 	
 	public static long startTime;
-	public static long currentTime;
+	public static long currentTimeSeconds;
 	public static long minutes;
 	public static long seconds;
 	public static String stringTime;
@@ -28,6 +28,7 @@ public class Timer {
 	public static String stringTime2;
 	
 	
+	
 	public Timer(){
 		
 	}
@@ -40,13 +41,14 @@ public class Timer {
 	}
 	
 	public static void checkCurrentTime(){
-		currentTime = (System.currentTimeMillis() - startTime)/1000;
+		
+		currentTimeSeconds = (System.currentTimeMillis() - startTime)/1000;
 		updateTime();
 	}
 	
 	public static void updateTime(){
-		minutes = currentTime/60;
-		seconds = currentTime - (minutes*60);
+		minutes = currentTimeSeconds/60;
+		seconds = currentTimeSeconds - (minutes*60);
 		stringTime = String.format("%02d:%02d", minutes, seconds);
 		stringTime2 = String.format("Time: %02d:%02d", minutes, seconds);
         layout.setText(Timer.font, stringTime );

@@ -6,7 +6,7 @@ public class OriginalBacteriaSpawner {
 
 	private float spawnRate;
 	private float despawnRate;
-
+	private static long spawnedTemp = 0;
 	public ArrayList<OriginalBacteria> bacterias;
 
 	public OriginalBacteriaSpawner(float spawnRate, float despawnRate) {
@@ -15,7 +15,7 @@ public class OriginalBacteriaSpawner {
 		this.despawnRate = despawnRate;
 		bacterias = new ArrayList<OriginalBacteria>();
 
-		bacterias.add(new OriginalBacteria());
+		
 
 
 
@@ -24,8 +24,10 @@ public class OriginalBacteriaSpawner {
 
 
 	public void spawnBacteria() {
-		if(Timer.seconds % spawnRate == 0){
+		
+		if(Timer.seconds != spawnedTemp && Timer.seconds != 0 && Timer.seconds % spawnRate == 0){
 			bacterias.add(new OriginalBacteria());
+			spawnedTemp = Timer.seconds;
 		}
 	}
 

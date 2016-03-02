@@ -16,6 +16,7 @@ public class SpawnSystem {
 	private float forteBactSpawnerDespawnRate = 5;
 	private float explodeBactSpawnerSpawnRate = 10;
 	private float explodeBactSpawnerDespawnRate = 5;
+	private static long spawnedTemp = 0;
 
 
 
@@ -29,8 +30,8 @@ public class SpawnSystem {
 	}
 
 	public void updateSpawners(){
-		if(Timer.seconds % 3 == 0){
-			addSpawners();
+		if(Timer.seconds != spawnedTemp && Timer.seconds != 0 && Timer.seconds % 3 == 0){
+			//addSpawners();
 		}
 		for(OriginalBacteriaSpawner spawner: OriginalBacteriaSpawners){
 			spawner.spawnBacteria();
