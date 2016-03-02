@@ -13,11 +13,10 @@ public abstract class Bacteria {
     Random rand = new Random();
 
 
-    public Bacteria(int posX, int posY, float spawnRate){
+    public Bacteria(int posX, int posY){
 
     	this.posX = posX;
     	this.posY = posY;
-    	this.spawnRate = spawnRate;
 
     }
 
@@ -29,9 +28,6 @@ public abstract class Bacteria {
     	this.posY = posY;
     }
     
-    public void setSpawnRate(float spawnRate){
-    	this.spawnRate = spawnRate;
-    }
 
     public int getX(){
     	return posX;

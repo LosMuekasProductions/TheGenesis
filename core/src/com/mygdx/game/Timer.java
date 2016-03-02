@@ -13,10 +13,20 @@ public class Timer {
 	public static long seconds;
 	public static String stringTime;
 	public static BitmapFont font = new BitmapFont(Gdx.files.internal("Fonts/Font.fnt"), false);;
-    public static String scoreString = "0";
+	public static BitmapFont gameOverFont = new BitmapFont(Gdx.files.internal("Gameoverfont/gameOverFont.fnt"), false);;
+
+
+	public static String scoreString = "0";
     public static GlyphLayout layout = new GlyphLayout();
+    public static GlyphLayout layout2 = new GlyphLayout();
+    
+
     public static float width = layout.width;
     public static float height = layout.height;
+    public static float width2 = layout2.width;
+    public static float height2 = layout2.height;
+	public static String stringTime2;
+	
 	
 	public Timer(){
 		
@@ -38,9 +48,15 @@ public class Timer {
 		minutes = currentTime/60;
 		seconds = currentTime - (minutes*60);
 		stringTime = String.format("%02d:%02d", minutes, seconds);
+		stringTime2 = String.format("Time: %02d:%02d", minutes, seconds);
         layout.setText(Timer.font, stringTime );
+        layout2.setText(Timer.font, stringTime2);
         width = layout.width;
         height = layout.height;
+        width2 = layout2.width;
+		height2 = layout2.height;
+        
+       
     }
 	
 	

@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.GameOverFont;
 import com.mygdx.game.PlayerHealth;
 import com.mygdx.game.Score;
 import com.mygdx.game.Timer;
@@ -22,6 +23,7 @@ public class PlayState extends States implements InputProcessor{
     private PlayerHealth health;
     private Texture playStateBackground;
     private boolean clicked;
+	private boolean clicked2;
 
 
 
@@ -41,7 +43,8 @@ public class PlayState extends States implements InputProcessor{
     @Override
     protected void handleInput() {
 
-            Score.score += 5;
+           gsm.set(new GameOverState(gsm));
+           dispose();
 
 
     }
@@ -52,18 +55,29 @@ public class PlayState extends States implements InputProcessor{
             handleInput();
             clicked = false;
         }
+        if(clicked2) {
+            scoreUp();
+            clicked2 = false;
+        }
 
         health.checkHealth();
         Score.updateScore();
         Timer.checkCurrentTime();
-        
+        GameOverFont.updateOverTimeAndScore();        
 
 
 
     }
 
-    @Override
+    private void scoreUp() {
+    	Score.score += 5;
+	}
+
+	@Override
     public void dispose() {
+		health.getHealthPic().dispose();
+		playStateBackground.dispose();
+		
 
     }
 
@@ -98,6 +112,10 @@ public class PlayState extends States implements InputProcessor{
         if(button == Input.Buttons.LEFT) {
 
             clicked = true;
+        }
+        if(button == Input.Buttons.RIGHT) {
+
+            clicked2 = true;
         }
         return false;
     }
