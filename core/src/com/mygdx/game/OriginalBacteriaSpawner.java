@@ -14,10 +14,10 @@ public class OriginalBacteriaSpawner {
 		this.spawnRate = spawnRate;
 		this.despawnRate = despawnRate;
 		bacterias = new ArrayList<OriginalBacteria>();
-		
+
 		bacterias.add(new OriginalBacteria());
-		
-		
+
+
 
 	}
 
