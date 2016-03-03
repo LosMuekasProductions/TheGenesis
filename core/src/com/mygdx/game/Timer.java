@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 
 public class Timer {
 
-	
+
 	public static long startTime;
 	public static long currentTimeSeconds;
 	public static long minutes;
@@ -19,33 +19,31 @@ public class Timer {
 	public static String scoreString = "0";
     public static GlyphLayout layout = new GlyphLayout();
     public static GlyphLayout layout2 = new GlyphLayout();
-    
+
 
     public static float width = layout.width;
     public static float height = layout.height;
     public static float width2 = layout2.width;
     public static float height2 = layout2.height;
 	public static String stringTime2;
-	
-	
-	
+
 	public Timer(){
-		
+
 	}
-	
+
 	public static void resetTimer(){
 		startTime = System.currentTimeMillis();
 		minutes = 0;
 		seconds = 0;
-		
+
 	}
-	
+
 	public static void checkCurrentTime(){
 		
 		currentTimeSeconds = (System.currentTimeMillis() - startTime)/1000;
 		updateTime();
 	}
-	
+
 	public static void updateTime(){
 		minutes = currentTimeSeconds/60;
 		seconds = currentTimeSeconds - (minutes*60);
@@ -57,10 +55,10 @@ public class Timer {
         height = layout.height;
         width2 = layout2.width;
 		height2 = layout2.height;
-        
-       
+
+
     }
-	
-	
-	
+
+
+
 }
