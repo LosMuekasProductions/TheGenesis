@@ -6,9 +6,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.States.PlayState;
 
 public class SpawnSystem {
-	private ArrayList<OriginalBacteriaSpawner> OriginalBacteriaSpawners;
-	private ArrayList<ForteBacteriaSpawner> ForteBacteriaSpawners;
-	private ArrayList<ExplodeBacteriaSpawner> ExplodeBacteriaSpawners;
+	private OriginalBacteriaSpawner originalBacteriaSpawner;
+	private ForteBacteriaSpawner forteBacteriaSpawner;
+	private ExplodeBacteriaSpawner explodeBacteriaSpawner;
 
 	private float origBactSpawnerSpawnRate = 2;
 	private float origBactSpawnerDespawnRate = 5;
@@ -21,45 +21,49 @@ public class SpawnSystem {
 
 
 	public SpawnSystem(){
-		OriginalBacteriaSpawners = new ArrayList<OriginalBacteriaSpawner>();
-		ForteBacteriaSpawners = new ArrayList<ForteBacteriaSpawner>();
-		ExplodeBacteriaSpawners = new ArrayList<ExplodeBacteriaSpawner>();
-		addSpawners();
+		originalBacteriaSpawner = new OriginalBacteriaSpawner(origBactSpawnerSpawnRate, origBactSpawnerDespawnRate);
+		forteBacteriaSpawner = new ForteBacteriaSpawner(forteBactSpawnerSpawnRate, forteBactSpawnerDespawnRate);
+		explodeBacteriaSpawner = new ExplodeBacteriaSpawner(explodeBactSpawnerSpawnRate, explodeBactSpawnerDespawnRate);
+		
 
 
 	}
 
 	public void updateSpawners(){
-		if(Timer.seconds != spawnedTemp && Timer.seconds != 0 && Timer.seconds % 3 == 0){
-			//addSpawners();
-		}
-		for(OriginalBacteriaSpawner spawner: OriginalBacteriaSpawners){
-			spawner.spawnBacteria();
-		}
+		
+		originalBacteriaSpawner.spawnBacteria();
+		forteBacteriaSpawner.spawnBacteria();
+		explodeBacteriaSpawner.spawnBacteria();
 
 	}
 
 	public void render(SpriteBatch sb){
 
-		for(OriginalBacteriaSpawner spawner: OriginalBacteriaSpawners){
-			for(OriginalBacteria bacteria: spawner.bacterias){
+		for(OriginalBacteria bacteria: originalBacteriaSpawner.bacterias){
 
-				sb.draw(bacteria.getImg(), bacteria.getX(), bacteria.getY());
+			sb.draw(bacteria.getImg(), bacteria.getX(), bacteria.getY());
 
-			}
 		}
+		for(Forte bacteria: forteBacteriaSpawner.bacterias){
+
+			sb.draw(bacteria.getImg(), bacteria.getX(), bacteria.getY());
+
+		}
+		for(Explode bacteria: explodeBacteriaSpawner.bacterias){
+
+			sb.draw(bacteria.getImg(), bacteria.getX(), bacteria.getY());
+
+		}
+		
 	}
 	public void addSpawners(){
-		OriginalBacteriaSpawners.add(new OriginalBacteriaSpawner(origBactSpawnerSpawnRate, origBactSpawnerDespawnRate));
-		ForteBacteriaSpawners.add(new ForteBacteriaSpawner(forteBactSpawnerSpawnRate, forteBactSpawnerDespawnRate));
-		ExplodeBacteriaSpawners.add(new ExplodeBacteriaSpawner(explodeBactSpawnerSpawnRate, explodeBactSpawnerDespawnRate));
-
-		origBactSpawnerSpawnRate += 1;
-		origBactSpawnerDespawnRate -= origBactSpawnerDespawnRate*.75;
-		forteBactSpawnerSpawnRate += 1;
-		forteBactSpawnerDespawnRate -= forteBactSpawnerDespawnRate*.75;
-		explodeBactSpawnerSpawnRate += 1;
-		explodeBactSpawnerDespawnRate -= explodeBactSpawnerDespawnRate *.75;
+		
+//		origBactSpawnerSpawnRate += 1;
+//		origBactSpawnerDespawnRate -= origBactSpawnerDespawnRate*.75;
+//		forteBactSpawnerSpawnRate += 1;
+//		forteBactSpawnerDespawnRate -= forteBactSpawnerDespawnRate*.75;
+//		explodeBactSpawnerSpawnRate += 1;
+//		explodeBactSpawnerDespawnRate -= explodeBactSpawnerDespawnRate *.75;
 
 	}
 
