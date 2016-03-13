@@ -26,6 +26,7 @@ public class Timer {
     public static float width2 = layout2.width;
     public static float height2 = layout2.height;
 	public static String stringTime2;
+	public static long currentTimeMillis;
 
 	public Timer(){
 
@@ -39,7 +40,7 @@ public class Timer {
 	}
 
 	public static void checkCurrentTime(){
-		
+		currentTimeMillis = System.currentTimeMillis() - startTime;
 		currentTimeSeconds = (System.currentTimeMillis() - startTime)/1000;
 		updateTime();
 	}

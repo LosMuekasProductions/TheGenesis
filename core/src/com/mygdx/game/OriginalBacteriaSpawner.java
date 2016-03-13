@@ -4,16 +4,18 @@ import java.util.ArrayList;
 
 public class OriginalBacteriaSpawner {
 
-	private float spawnRate;
+	private static float spawnRate;
 	private float despawnRate;
-	private static long spawnedTemp = 0;
 	public ArrayList<OriginalBacteria> bacterias;
+	public long lastTimeSpawned;
+	
 
 	public OriginalBacteriaSpawner(float spawnRate, float despawnRate) {
 
-		this.spawnRate = spawnRate;
+		this.spawnRate = spawnRate*1000;
 		this.despawnRate = despawnRate;
 		bacterias = new ArrayList<OriginalBacteria>();
+		lastTimeSpawned = (long) this.spawnRate;
 
 		
 
@@ -25,10 +27,11 @@ public class OriginalBacteriaSpawner {
 
 	public void spawnBacteria() {
 		
-		if(Timer.seconds != spawnedTemp && Timer.seconds != 0 && Timer.seconds % spawnRate == 0){
+		if( Timer.currentTimeMillis != 0 && Timer.currentTimeMillis > lastTimeSpawned ){
 			bacterias.add(new OriginalBacteria());
-			spawnedTemp = Timer.seconds;
-		}
+			lastTimeSpawned = Timer.currentTimeMillis;
+			lastTimeSpawned += spawnRate * 19/20;
+		}	
 	}
 
 

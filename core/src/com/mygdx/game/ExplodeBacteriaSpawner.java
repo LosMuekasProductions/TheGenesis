@@ -6,21 +6,26 @@ public class ExplodeBacteriaSpawner {
 
 	private float spawnRate;
 	private float despawnRate;
+	public long lastTimeSpawned;
+
 
 	public ArrayList<Explode> bacterias;
-	private long spawnedTemp = 0;
+	
 
 	public ExplodeBacteriaSpawner(float spawnRate, float despawnRate){
-		this.spawnRate = spawnRate;
+		this.spawnRate = spawnRate*1000;
 		this.despawnRate = despawnRate;
 		bacterias = new ArrayList<Explode>();
+		lastTimeSpawned = (long) this.spawnRate;
+
 	}
 
 	public void spawnBacteria() {
-		if(Timer.seconds != spawnedTemp  && Timer.seconds != 0 && Timer.seconds % spawnRate == 0){
+		if( Timer.currentTimeMillis != 0 && Timer.currentTimeMillis > lastTimeSpawned ){
 			bacterias.add(new Explode());
-			spawnedTemp = Timer.seconds;
-		}		
+			lastTimeSpawned = Timer.currentTimeMillis;
+			lastTimeSpawned += spawnRate * 19/20;	
+		}
 	}
 
 }
