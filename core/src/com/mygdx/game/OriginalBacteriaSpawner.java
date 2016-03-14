@@ -7,7 +7,8 @@ public class OriginalBacteriaSpawner {
 	private static float spawnRate;
 	private float despawnRate;
 	public ArrayList<OriginalBacteria> bacterias;
-	public long lastTimeSpawned;
+	public float lastTimeSpawned;
+	private int count =0;
 	
 
 	public OriginalBacteriaSpawner(float spawnRate, float despawnRate) {
@@ -27,11 +28,15 @@ public class OriginalBacteriaSpawner {
 
 	public void spawnBacteria() {
 		
+		
 		if( Timer.currentTimeMillis != 0 && Timer.currentTimeMillis > lastTimeSpawned ){
 			bacterias.add(new OriginalBacteria());
+			System.out.println(count);
 			lastTimeSpawned = Timer.currentTimeMillis;
 			lastTimeSpawned += spawnRate * 19/20;
+			count++;
 		}	
+		
 	}
 
 

@@ -6,7 +6,7 @@ public class ExplodeBacteriaSpawner {
 
 	private float spawnRate;
 	private float despawnRate;
-	public long lastTimeSpawned;
+	public float lastTimeSpawned;
 
 
 	public ArrayList<Explode> bacterias;

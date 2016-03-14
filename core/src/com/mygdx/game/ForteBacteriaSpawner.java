@@ -7,7 +7,7 @@ public class ForteBacteriaSpawner {
 	private float despawnRate;
 	public ArrayList<Forte> bacterias;
 	
-	public long lastTimeSpawned;
+	public float lastTimeSpawned;
 
 	public ForteBacteriaSpawner(float spawnRate, float despawnRate){
 		this.spawnRate = spawnRate*1000;
