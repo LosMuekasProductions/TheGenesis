@@ -24,13 +24,13 @@ public class SpawnSystem {
 		originalBacteriaSpawner = new OriginalBacteriaSpawner(origBactSpawnerSpawnRate, origBactSpawnerDespawnRate);
 		forteBacteriaSpawner = new ForteBacteriaSpawner(forteBactSpawnerSpawnRate, forteBactSpawnerDespawnRate);
 		explodeBacteriaSpawner = new ExplodeBacteriaSpawner(explodeBactSpawnerSpawnRate, explodeBactSpawnerDespawnRate);
-		
+
 
 
 	}
 
 	public void updateSpawners(){
-		
+
 		originalBacteriaSpawner.spawnBacteria();
 		forteBacteriaSpawner.spawnBacteria();
 		explodeBacteriaSpawner.spawnBacteria();
@@ -54,10 +54,10 @@ public class SpawnSystem {
 			sb.draw(bacteria.getImg(), bacteria.getX(), bacteria.getY());
 
 		}
-		
+
 	}
 	public void addSpawners(){
-		
+
 //		origBactSpawnerSpawnRate += 1;
 //		origBactSpawnerDespawnRate -= origBactSpawnerDespawnRate*.75;
 //		forteBactSpawnerSpawnRate += 1;
@@ -66,5 +66,52 @@ public class SpawnSystem {
 //		explodeBactSpawnerDespawnRate -= explodeBactSpawnerDespawnRate *.75;
 
 	}
+
+	public ArrayList<Bacteria> getSpawnedOriginalBacterias(){
+		ArrayList<Bacteria> bacterias = new ArrayList<Bacteria>();
+
+		for(OriginalBacteria bacteria: originalBacteriaSpawner.bacterias){
+
+			bacterias.add(bacteria);
+		}
+		return bacterias;
+
+	}
+	public ArrayList<Bacteria> getSpawnedForteBacterias(){
+		ArrayList<Bacteria> bacterias = new ArrayList<Bacteria>();
+
+		for(Forte bacteria: forteBacteriaSpawner.bacterias){
+
+			bacterias.add(bacteria);
+
+		}
+		return bacterias;
+
+	}
+	public ArrayList<Bacteria> getSpawnedExplodeBacterias(){
+		ArrayList<Bacteria> bacterias = new ArrayList<Bacteria>();
+
+
+		for(Explode bacteria: explodeBacteriaSpawner.bacterias){
+
+			bacterias.add(bacteria);
+
+		}
+		return bacterias;
+	}
+
+	public void removeOriginalBacteria(int i){
+		originalBacteriaSpawner.bacterias.remove(i);
+
+	}
+	public void removeForteBacteria(int i){
+		forteBacteriaSpawner.bacterias.remove(i);
+
+	}
+	public void removeExplodeBacteria(int i){
+		explodeBacteriaSpawner.bacterias.remove(i);
+
+	}
+
 
 }

@@ -19,6 +19,8 @@ public abstract class Bacteria {
     	this.posY = posY;
 
     }
+    public abstract Texture getImg();
+
 
 	public void setX(int posX){
     	this.posX = posX;
