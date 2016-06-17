@@ -64,11 +64,13 @@ public class PlayState extends States implements InputProcessor{
 			Bacteria bacteria = spawnSystem.getSpawnedForteBacterias().get(i);
 			Rectangle bacteriaBounds = new Rectangle(bacteria.getX(), bacteria.getY(), bacteria.getImg().getWidth(), bacteria.getImg().getHeight());
 			if(bacteriaBounds.contains(click.x, click.y)){
-				bacteria.getImg().dispose();
-
-				spawnSystem.removeForteBacteria(i);
-
-				scoreForteUp();
+				bacteria.setLife(bacteria.getLife()-1);
+				if( bacteria.getLife() == 0){
+					bacteria.getImg().dispose();
+					spawnSystem.removeForteBacteria(i);
+					scoreForteUp();
+				}
+				
 			}
 		}
 
@@ -76,10 +78,13 @@ public class PlayState extends States implements InputProcessor{
 			Bacteria bacteria = spawnSystem.getSpawnedExplodeBacterias().get(i);
 			Rectangle bacteriaBounds = new Rectangle(bacteria.getX(), bacteria.getY(), bacteria.getImg().getWidth(), bacteria.getImg().getHeight());
 			if(bacteriaBounds.contains(click.x, click.y)){
-				bacteria.getImg().dispose();
-
-				spawnSystem.removeExplodeBacteria(i);
-				scoreExplodeUp();
+				bacteria.setLife(bacteria.getLife()-1);
+				System.out.println(bacteria.getLife());
+				if( bacteria.getLife() == 0){
+					bacteria.getImg().dispose();
+					spawnSystem.removeExplodeBacteria(i);
+					scoreExplodeUp();
+				}
 			}
 		}
 
@@ -96,7 +101,8 @@ public class PlayState extends States implements InputProcessor{
 			clicked = false;
 		}
 
-
+		checkDespawn();
+		
 		health.checkHealth();
 		Score.updateScore();
 		Timer.checkCurrentTime();
@@ -106,6 +112,36 @@ public class PlayState extends States implements InputProcessor{
 
 
 
+	}
+
+	private void checkDespawn() {
+		for(int i=0; i<spawnSystem.getSpawnedOriginalBacterias().size(); i++){
+			Bacteria bacterias = spawnSystem.getSpawnedOriginalBacterias().get(i);
+			if(System.currentTimeMillis()- bacterias.getTimeSpawned() > spawnSystem.getOrigBactSpawnerDespawnRate()){
+				health.takeDamage(5);
+				bacterias.getImg().dispose();
+				spawnSystem.removeOriginalBacteria(i);
+			}
+		}
+		
+		for(int i=0; i<spawnSystem.getSpawnedForteBacterias().size(); i++){
+			Bacteria bacterias = spawnSystem.getSpawnedForteBacterias().get(i);
+			if(System.currentTimeMillis()- bacterias.getTimeSpawned() > spawnSystem.getForteBactSpawnerDespawnRate()){
+				health.takeDamage(10);
+				bacterias.getImg().dispose();
+				spawnSystem.removeForteBacteria(i);
+			}
+		}
+
+		for(int i=0; i<spawnSystem.getSpawnedExplodeBacterias().size(); i++){
+			Bacteria bacterias = spawnSystem.getSpawnedExplodeBacterias().get(i);
+			if(System.currentTimeMillis()- bacterias.getTimeSpawned() > spawnSystem.getExplodeBactSpawnerDespawnRate()){
+				spawnSystem.forceOriginalSpawn();
+				health.takeDamage(15);
+				bacterias.getImg().dispose();
+				spawnSystem.removeExplodeBacteria(i);
+			}
+		}
 	}
 
 	private void scoreOriginalUp() {

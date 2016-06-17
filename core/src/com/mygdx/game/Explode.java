@@ -6,6 +6,7 @@ public class Explode extends Bacteria {
 
 	public final static int DAMAGE = 10;
 	private final Texture IMG = new Texture("Bacterias/explode.png");
+	private int life = 5;
 
     public Explode() {
         super();
@@ -17,5 +18,12 @@ public class Explode extends Bacteria {
     public Texture getImg(){
     	return IMG;
     }
+    public int getLife() {
+		return life;
+	}
+
+	public void setLife(int life) {
+		this.life = life;
+	}
 
 }

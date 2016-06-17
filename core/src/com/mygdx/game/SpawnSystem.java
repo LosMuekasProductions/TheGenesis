@@ -11,11 +11,11 @@ public class SpawnSystem {
 	private ExplodeBacteriaSpawner explodeBacteriaSpawner;
 
 	private float origBactSpawnerSpawnRate = 2;
-	private float origBactSpawnerDespawnRate = 5;
+	private float origBactSpawnerDespawnRate = 2*1000;
 	private float forteBactSpawnerSpawnRate = 5;
-	private float forteBactSpawnerDespawnRate = 5;
+	private float forteBactSpawnerDespawnRate = 3*1000;
 	private float explodeBactSpawnerSpawnRate = 10;
-	private float explodeBactSpawnerDespawnRate = 5;
+	private float explodeBactSpawnerDespawnRate = 4*1000;
 	private static long spawnedTemp = 0;
 
 
@@ -56,16 +56,7 @@ public class SpawnSystem {
 		}
 
 	}
-	public void addSpawners(){
 
-//		origBactSpawnerSpawnRate += 1;
-//		origBactSpawnerDespawnRate -= origBactSpawnerDespawnRate*.75;
-//		forteBactSpawnerSpawnRate += 1;
-//		forteBactSpawnerDespawnRate -= forteBactSpawnerDespawnRate*.75;
-//		explodeBactSpawnerSpawnRate += 1;
-//		explodeBactSpawnerDespawnRate -= explodeBactSpawnerDespawnRate *.75;
-
-	}
 
 	public ArrayList<Bacteria> getSpawnedOriginalBacterias(){
 		ArrayList<Bacteria> bacterias = new ArrayList<Bacteria>();
@@ -112,6 +103,32 @@ public class SpawnSystem {
 		explodeBacteriaSpawner.bacterias.remove(i);
 
 	}
+
+	public float getOrigBactSpawnerDespawnRate() {
+		return origBactSpawnerDespawnRate;
+	}
+
+
+
+	public float getForteBactSpawnerDespawnRate() {
+		return forteBactSpawnerDespawnRate;
+	}
+
+
+	public float getExplodeBactSpawnerDespawnRate() {
+		return explodeBactSpawnerDespawnRate;
+	}
+
+	public void forceOriginalSpawn() {
+		originalBacteriaSpawner.forceSpawnBacteria();
+
+	}
+
+
+
+
+
+
 
 
 }

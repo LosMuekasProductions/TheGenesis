@@ -6,7 +6,7 @@ public class ForteBacteriaSpawner {
 	private float spawnRate;
 	private float despawnRate;
 	public ArrayList<Forte> bacterias;
-	
+
 	public long lastTimeSpawned;
 
 	public ForteBacteriaSpawner(float spawnRate, float despawnRate){
@@ -20,9 +20,10 @@ public class ForteBacteriaSpawner {
 		if( Timer.currentTimeMillis != 0 && Timer.currentTimeMillis > lastTimeSpawned ){
 			bacterias.add(new Forte());
 			lastTimeSpawned = Timer.currentTimeMillis;
-			lastTimeSpawned += spawnRate * 19/20;		}			
+			lastTimeSpawned += spawnRate * 19/20;		}
 	}
 
+	
 
 
 }
