@@ -11,6 +11,7 @@ public class OriginalBacteriaSpawner {
 	private int count =0;
 	
 
+
 	public OriginalBacteriaSpawner(float spawnRate, float despawnRate) {
 
 		this.spawnRate = spawnRate*1000;
@@ -18,17 +19,11 @@ public class OriginalBacteriaSpawner {
 		bacterias = new ArrayList<OriginalBacteria>();
 		lastTimeSpawned = (long) this.spawnRate;
 
-		
-
-
-
 	}
 
-
-
 	public void spawnBacteria() {
-		
-		
+
+
 		if( Timer.currentTimeMillis != 0 && Timer.currentTimeMillis > lastTimeSpawned ){
 			bacterias.add(new OriginalBacteria());
 			System.out.println(count);
@@ -38,8 +33,13 @@ public class OriginalBacteriaSpawner {
 		}	
 		
 	}
+	
 
+	public void forceSpawnBacteria() {
+		bacterias.add(new OriginalBacteria());
+		bacterias.add(new OriginalBacteria());
+		bacterias.add(new OriginalBacteria());		
+	}
 
-
-
+	
 }

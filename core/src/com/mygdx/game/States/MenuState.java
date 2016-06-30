@@ -128,7 +128,6 @@ public class MenuState extends States implements InputProcessor{
 
     @Override
 	protected void update(float dt) {
-
     	handleInput();
 
 	}
